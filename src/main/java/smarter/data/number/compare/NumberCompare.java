@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 /*  2:   */ 
 /*  4:   */ import smarter.common.compare.AbstractCompare;
-/*  5:   */ import smarter.data.number.check.NumberCheckFactory;
+import smarter.data.number.check.factory.NumberCheckFactory;
 /*  6:   */ 
 /*  7:   */ public class NumberCompare
 /*  8:   */   extends AbstractCompare<Number>
