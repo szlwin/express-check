@@ -1,0 +1,9 @@
+*target*
+*.project*
+*.iml
+*.DS_Store*
+*.setting*
+*.idea*
+/.classpath
+
+/FILE_PATH_IS_UNDEFINED/
