@@ -10,7 +10,7 @@ public class UnEqual
     if (o == null) {
       return o != e;
     }
-    return o.getTime() != e.getTime();
+    return o.compareTo(e) != 0;
   }
 }
 

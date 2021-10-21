@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import smarter.common.compare.AbstractCompare;
 import smarter.common.util.CheckUtil;
-import smarter.data.date.check.factory.DataCheckFactory;
+import smarter.data.date.check.factory.DateCheckFactory;
 
 public class DateCompare
   extends AbstractCompare<Date>
@@ -21,7 +21,7 @@ public class DateCompare
       
       gregorianCalendar = new GregorianCalendar(
         Integer.valueOf(dateYearInfo[0]).intValue(), 
-        Integer.valueOf(dateYearInfo[1]).intValue(), 
+        Integer.valueOf(dateYearInfo[1]).intValue() - 1, 
         Integer.valueOf(dateYearInfo[2]).intValue(), 
         Integer.valueOf(dateHourInfo[0]).intValue(), 
         Integer.valueOf(dateHourInfo[1]).intValue(), 
@@ -33,7 +33,7 @@ public class DateCompare
       
       gregorianCalendar = new GregorianCalendar(
         Integer.valueOf(dateYearInfo[0]).intValue(), 
-        Integer.valueOf(dateYearInfo[1]).intValue(), 
+        Integer.valueOf(dateYearInfo[1]).intValue() - 1 , 
         Integer.valueOf(dateYearInfo[2]).intValue());
     }
     return gregorianCalendar.getTime();
@@ -51,8 +51,7 @@ public class DateCompare
   
   public boolean compare(Date src, String complareTag, Date dest)
   {
-    return 
-    
-      DataCheckFactory.getInstance().getCheck(complareTag).check(src, dest);
+
+    return DateCheckFactory.getInstance().getCheck(complareTag).check(src, dest);
   }
 }

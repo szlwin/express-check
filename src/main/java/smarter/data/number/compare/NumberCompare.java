@@ -29,9 +29,9 @@ import smarter.data.number.check.factory.NumberCheckFactory;
 					}
 					
 					if( src instanceof BigDecimal ){
-						return compare((BigDecimal)src, compareTag, (BigDecimal)dest);
+						return compareBigDecimal((BigDecimal)src, compareTag, (BigDecimal)dest);
 					}else{
-						return compare((BigInteger)src, compareTag, (BigInteger)dest);
+						return compareBigInteger((BigInteger)src, compareTag, (BigInteger)dest);
 					}
 					
 				}
@@ -62,8 +62,8 @@ import smarter.data.number.check.factory.NumberCheckFactory;
 						newSrc = new BigDecimal(src.toString());
 						
 						
-					}else{
-						newSrc = new BigInteger(src.toString());
+					}else if(dest instanceof BigInteger){
+						newSrc = BigInteger.valueOf(src.longValue());
 						
 						
 					}
@@ -125,7 +125,7 @@ import smarter.data.number.check.factory.NumberCheckFactory;
 					
 					throw new RuntimeException("UnSuport compare tag:"+compareTag);
 			}
-/* 16:   */ }
+}
 
 
 

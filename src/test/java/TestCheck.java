@@ -26,7 +26,15 @@ public class TestCheck {
 		
 		//LexerUtil.load("expr", smarter.common.express.execute.ExprExecuter.class.getClassLoader()
 		//		.getResourceAsStream("Expr.ls"));
+		BigDecimal src = new BigDecimal(10);
+		BigDecimal dest = new BigDecimal(3);
+		src.divide(dest,2,2);
 		
+		BigInteger src1 = new BigInteger("10");
+		BigInteger dest1 = new BigInteger("3");
+		System.out.println(src1.divide(dest1));
+		
+		testDate();
 		testOther();
 		
 		testPattenCheck2();
@@ -53,6 +61,7 @@ public class TestCheck {
 		map.put("userId", -16);
 		map.put("uId", true);
 		map.put("num", new BigDecimal(123));
+		map.put("num2", new BigDecimal(123));
 		map.put("num1", 123);
 		map.put("count", new BigInteger("123"));
 		//pattenCheck.setPattern("(!u_id and uId=true) or userId=-16");
@@ -66,7 +75,7 @@ public class TestCheck {
 		pattenCheck.setPattern("num1 =count");
 		System.out.println("Test3:"+pattenCheck.check());
 		
-		pattenCheck.setPattern("userId=-16");
+		pattenCheck.setPattern("userId=-16*1.1");
 		System.out.println(pattenCheck.check());
 		
 		pattenCheck.setPattern("num = null");
@@ -81,12 +90,36 @@ public class TestCheck {
 		pattenCheck.setPattern("count =123");
 		System.out.println("Test1:"+pattenCheck.check());
 		
-		pattenCheck.setPattern("num1 =123");
+		pattenCheck.setPattern("num1 =123*1");
 		System.out.println("Test2:"+pattenCheck.check());
 		
 
+		pattenCheck.setPattern("num =num2");
+		System.out.println("Test2:"+pattenCheck.check());
 	}
 	
+	public static void testDate() throws ExecuteExpection {
+
+		PatternCheck pattenCheck = new PatternCheck();
+		
+		Map<String,Object> map = new HashMap<String,Object>(20);
+		Date date = new Date();
+		map.put("date", date);
+		map.put("date1", date);
+		map.put("num", 1d);
+		
+		//pattenCheck.setPattern("date = date1 and date>=date1 and date<=date1 and date1 >'2012-09-14' and date > '2021-09-14 12:00:00' ");
+
+		//pattenCheck.setPattern("1 = num ");
+		//pattenCheck.setPattern("date > '2021-09-14'");
+		pattenCheck.setPattern("date > '2021-09-14 12:00:00' and num=1");
+		pattenCheck.setCheckValue(map);
+		System.out.println(pattenCheck.check());
+		
+		//pattenCheck.setPattern("date = date1");
+		
+		  //and '2012-09-14' < date1 and date > '2021-09-14 12:00:00'
+	}
 	public static void testPattenCheck2() throws ExecuteExpection {
 
 		PatternCheck pattenCheck = new PatternCheck();

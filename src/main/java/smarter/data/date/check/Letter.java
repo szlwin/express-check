@@ -7,6 +7,7 @@ public class Letter
 {
   public boolean check(Date o, Date e)
   {
-    return o.getTime() < e.getTime();
+
+	  return o.compareTo(e) < 0;
   }
 }

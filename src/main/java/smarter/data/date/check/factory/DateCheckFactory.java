@@ -12,12 +12,12 @@ import smarter.data.date.check.LetterE;
 import smarter.data.date.check.NotNull;
 import smarter.data.date.check.UnEqual;
 
-public class DataCheckFactory
+public class DateCheckFactory
 {
   private final Map<String, Check<Date>> checkMap = new HashMap<>();
-  private static final DataCheckFactory dataCheckFactory = new DataCheckFactory();
+  private static final DateCheckFactory dataCheckFactory = new DateCheckFactory();
   
-  private DataCheckFactory()
+  private DateCheckFactory()
   {
     this.checkMap.put("!", new NotNull());
     this.checkMap.put("<=", new LetterE());
@@ -28,7 +28,7 @@ public class DataCheckFactory
     this.checkMap.put("!=", new UnEqual());
   }
   
-  public static DataCheckFactory getInstance()
+  public static DateCheckFactory getInstance()
   {
     return dataCheckFactory;
   }
