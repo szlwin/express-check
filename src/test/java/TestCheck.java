@@ -49,8 +49,45 @@ public class TestCheck {
 		testBoolean();
 		
 		testRegString();
+
+		TestCheck testCheck = new TestCheck();
+		testCheck.testObj();
 	}
-	
+
+	public class Order{
+		private Integer id;
+
+		private Order order;
+		public Integer getId() {
+			return id;
+		}
+
+		public void setId(Integer id) {
+			this.id = id;
+		}
+
+		public Order getOrder() {
+			return order;
+		}
+
+		public void setOrder(Order order) {
+			this.order = order;
+		}
+	}
+
+	public void testObj() throws ExecuteExpection {
+
+		TestCheck.Order order = new TestCheck.Order();
+
+		TestCheck.Order order1 = new TestCheck.Order();
+		order1.setId(1);
+		order.setOrder(order1);
+		PatternCheck pattenCheck = new PatternCheck();
+		pattenCheck.setCheckValue(order);
+		pattenCheck.setPattern("order.id=1");
+		System.out.println(pattenCheck.check());
+	}
+
 	public static void testOther() throws ExecuteExpection {
 		
 		PatternCheck pattenCheck = new PatternCheck();
@@ -75,7 +112,7 @@ public class TestCheck {
 		pattenCheck.setPattern("num1 =count");
 		System.out.println("Test3:"+pattenCheck.check());
 		
-		pattenCheck.setPattern("userId=-16*1.1");
+		pattenCheck.setPattern("userId = -16*1");
 		System.out.println(pattenCheck.check());
 		
 		pattenCheck.setPattern("num = null");

@@ -130,8 +130,6 @@ public class CheckUtil
 	 //if(value == null){
 	 //	 return  checkValue == null;
 	 //}
-	 
-	 
       if (value == null || checkValue == null) {
         return new ObjectCompare().compare(value, tag, checkValue);
       }
@@ -143,6 +141,7 @@ public class CheckUtil
     		  
     	  
       }
+
 	  Compare compare = dataMap.get(value.getClass());
       if (compare == null) {
     	  return compareArray[0].compare(value, tag, checkValue);
