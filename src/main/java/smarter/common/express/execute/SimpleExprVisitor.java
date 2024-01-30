@@ -1,5 +1,7 @@
 package smarter.common.express.execute;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -403,8 +405,17 @@ public class SimpleExprVisitor extends AbstractVisitor<SimpleExprParam>{
             }
             else
             {
-              Number num = (Number)getChildValue(context, 1);
-              context.setValue(Double.valueOf(0.0D - num.doubleValue()));
+				Object numValue = getChildValue(context, 1);
+				if(numValue instanceof Number){
+					Number num = (Number) getChildValue(context, 1);
+					context.setValue(Double.valueOf(0.0D - num.doubleValue()));
+				} else if(numValue instanceof BigDecimal){
+					BigDecimal num = (BigDecimal) getChildValue(context, 1);
+					context.setValue(num.negate());
+				}else if(numValue instanceof BigInteger){
+					BigInteger num = (BigInteger) getChildValue(context, 1);
+					context.setValue(num.negate());
+				}
             }
           }
         

@@ -6,8 +6,11 @@ import santr.v4.execute.AbstractVisitor;
 import santr.v4.parser.ParserTree;
 import santr.v4.parser.RuleContext;
 import smarter.common.util.CheckUtil;
+import smarter.data.number.compute.NumberCompute;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -193,8 +196,17 @@ public class ExprCVisitor extends AbstractVisitor<Object> {
             if (token.equals("!")) {
                 context.setValue(Boolean.valueOf(!((Boolean) getChildValue(context, 1)).booleanValue()));
             } else {
-                Number num = (Number) getChildValue(context, 1);
-                context.setValue(Double.valueOf(0.0D - num.doubleValue()));
+                Object numValue = getChildValue(context, 1);
+                if(numValue instanceof Number){
+                    Number num = (Number) getChildValue(context, 1);
+                    context.setValue(Double.valueOf(0.0D - num.doubleValue()));
+                } else if(numValue instanceof BigDecimal){
+                    BigDecimal num = (BigDecimal) getChildValue(context, 1);
+                    context.setValue(num.negate());
+                }else if(numValue instanceof BigInteger){
+                    BigInteger num = (BigInteger) getChildValue(context, 1);
+                    context.setValue(num.negate());
+                }
             }
         } else {
             //Get all the tree info.
@@ -208,12 +220,13 @@ public class ExprCVisitor extends AbstractVisitor<Object> {
                 if (compluteMap.containsKey(token)) {
                     //expr ('+'|'-') expr
                     // expr ('*'|'/') expr
-                    context.setValue(
+                    /*context.setValue(
                             compluteMap.get(token).eval(
                                     ((Double) this.getChildValue(treeInfoList[0]))
                                             .doubleValue(),
                                     ((Double) this.getChildValue(treeInfoList[2]))
-                                            .doubleValue()));
+                                            .doubleValue()));*/
+                    context.setValue(NumberCompute.compute((Number)this.getChildValue(treeInfoList[0]), token, (Number)this.getChildValue(treeInfoList[2])));
                 } else if (token.equals("and")) {
                     //expr and expr
                     context.setValue((Boolean) this.getChildValue(treeInfoList[0]) &&

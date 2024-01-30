@@ -18,7 +18,7 @@ expr : expr ('*'|'/') expr
      | expr (K_AND|K_OR) expr
      | fun
      | ID ('.' ID)*
-     | '-' INT
+     | '-' expr
      | INT
      | '(' expr ')'
      | STRING

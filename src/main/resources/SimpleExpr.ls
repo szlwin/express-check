@@ -36,7 +36,7 @@ right :expr
 expr : expr ('*'|'/') expr
      | expr ('+'|'-') expr
      | '!' expr
-     | '-' INT
+     | '-' expr
      | 'if'  expr 'then'  expr ('else' expr)?
      | expr ('='|'!='|'>='|'<='|'>'|'<') expr
      | expr (K_AND|K_OR) expr
