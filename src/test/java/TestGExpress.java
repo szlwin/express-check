@@ -24,8 +24,9 @@ public class TestGExpress {
         lexerExecuter.addVisitor(simpleExprVisitor);
 
         try {
-            lexerExecuter.parser("SimpleExpr", "     #num : if totalPrice>10 then totalPrice*1.1  else totalPrice*1.2;\n" +
-                    "     totalPrice : totalPrice*#num;");
+            lexerExecuter.parser("SimpleExpr",
+                    "     #num : if !(totalPrice>10) then totalPrice*1.1  else totalPrice*1.2;\n" +
+                    "     totalPrice : #num*totalPrice;");
         } catch (ExecuteInvaildException e) {
             e.printStackTrace();
 

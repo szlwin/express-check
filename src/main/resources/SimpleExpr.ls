@@ -30,13 +30,12 @@ computeExpr: left (':'|'!:') right
 left : variable (',' variable)*
 ;
 
-right :expr
+right : expr
 ;
 
 expr : expr ('*'|'/') expr
      | expr ('+'|'-') expr
      | '!' expr
-     | '-' expr
      | 'if'  expr 'then'  expr ('else' expr)?
      | expr ('='|'!='|'>='|'<='|'>'|'<') expr
      | expr (K_AND|K_OR) expr
@@ -46,6 +45,8 @@ expr : expr ('*'|'/') expr
      | DATE
      | BOOLEAN
      | NULL
+     | '-' INT
+     | INT
 ;
   
 BOOLEAN : K_TRUE

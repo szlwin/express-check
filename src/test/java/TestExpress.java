@@ -25,7 +25,7 @@ public class TestExpress {
          tExprVisitor.setParamer(param);
          parser.addVisitor(tExprVisitor);
          //tExprVisitor.vist(parser.getTree());
-         parser.parser("expr", "userId=12");
+         parser.parser("expr", "-22+userId");
          
          System.out.println(parser.getTree().getRuleContext().getValue());
 	}
