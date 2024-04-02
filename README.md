@@ -27,7 +27,7 @@ Licensed under the BSD lincese.
       System.out.println(propertyCheck.check());
     }
 
-以上例子中，将字符串3进行验证，其必须为非空、非空字符串、不等于2等规则，其可将字符串转换为数字后，进行数据校验规则进行校验，其具体校验规则如下：<br>
+以上例子中(在TestCheck.java中)，将字符串3进行验证，其必须为非空、非空字符串、不等于2等规则，其可将字符串转换为数字后，进行数据校验规则进行校验，其具体校验规则如下：<br>
 
 <table>
   <tr>
@@ -109,4 +109,22 @@ Licensed under the BSD lincese.
     <td></td>
   </tr>
 </table>
- 
+
+
+示例二<br>
+以下为一个多条件、多数据校验例子<br>
+
+    public static void testPattenCheck_1() throws ExecuteExpection {
+
+		PatternCheck pattenCheck = new PatternCheck();
+		
+		Map<String,Object> map = new HashMap<String,Object>(20);
+		map.put("productCount", 10);
+		map.put("totalPrice", 20);
+		map.put("userId", "2");
+		pattenCheck.setPattern("( productCount > 0 or totalPrice >= 0 ) or ( productCount*(totalPrice+10) > 200 and userId != '1' )");
+		pattenCheck.setCheckValue(map);
+		System.out.println("testPattenCheck_1:"+pattenCheck.check());
+	}
+
+
