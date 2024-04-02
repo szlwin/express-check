@@ -11,51 +11,15 @@ import smarter.common.express.execute.SimpleExprParam;
 import smarter.common.express.execute.SimpleExprVisitor;
 
 public class TestCExpress {
-
-	public static String expr = ""+
-			//"numer : decimal*binteger*double*int*long+binteger-decimal-double-long-int-decimal;"+
-			//"amount : if amount>10 then amount*1.1  else amount*1.2"+
-			//"samount,slist[1...].(n,c),amount.am1.am2,an.list[1...2],an.list1.(num,count),ann.list[...2].(price,numcount) : amount;"+
-			//"amount.amount[2222...].(num,nb),count : if acmount>0 then amount*1.1  else amount*1.2;"+
-	"productList{} : this.filter(this.num >0);"+
-	"productList{1} : this[...2].filter(this.num >0);"+
-	"productList : productList.filter(this.num >0);"+
-	"productList[1...] : this[1...2].filter(this.num >0);"+
-	//"productList.(num,count) : productList[...1].filter(this.num >0);"+
-	//"#totalCount,#totalPrice : productList.filter(if this.size>1 then this.num>1 and this.price>1 else this.num>1).sum(this.num,this.price);"+
-	//"#totalamount : multiply(#totalPrice,#totalCount,2,1);"+
-
-	//"productList.num,productList.price : productList.filter(this.num>1 and this.price>1).compute(this.num+1,this.price+1);"+
-
-	//"error('100','id²»ÄÜÎª¿Õ') : id != null;"+
-	"";
 	
 	public static void main(String args[]) throws Exception{
-		
-	     LexerUtil.load("SimpleExpr", 
-	    	       smarter.common.express.execute.ExprCVisitor.class
-	    	       	.getClassLoader()
-	    	        .getResourceAsStream("SimpleExpr.ls"));
-		//LexerUtil.load("SimpleExpr", "D:/work_pub_work/express-check/src/main/resources/ComputeExpr.ls");
-		
-		
-	     
-	    //GTreeViewer GTreeViewer = new GTreeViewer("test",LexerUtil.getGrammar("SimpleExpr").getgTree());
-	    //GTreeViewer.open();
-	   
-	    //testIf();
-	    //testIfOnly();
-	     //testNumber();
-	    //testError();
-	    //testError1();
-		 //System.out.println(lexerExecuter.getTree().getRuleContext().getValue());
-	    ExpressParser lexerExecuter = new ExpressParser();
-	    lexerExecuter.parser("SimpleExpr", expr);
-	    TreeViewer viewer = new TreeViewer(lexerExecuter.getTree());
-	    viewer.open();
-
-
+	    testIf();
+	    testIfOnly();
+		testNumber();
+	    testError();
+	    testError1();
 	}
+
 	public static void testNumber() throws ExecuteInvaildException{
 		String expr = "numer : decimal*binteger*double*int*long+binteger-decimal-double-long-int-decimal;";
 		

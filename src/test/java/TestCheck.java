@@ -10,9 +10,7 @@ import java.util.regex.Pattern;
 import santr.common.context.LexerUtil;
 import smarter.common.exception.ExecuteExpection;
 import smarter.common.express.check.PatternCheck;
-
-
-
+import smarter.common.express.check.PropertyCheck;
 
 
 public class TestCheck {
@@ -41,11 +39,11 @@ public class TestCheck {
 		testPattenCheck();
 		testPattenCheck_1();
 		testPattenCheck_3();
-		//testPropertyCheck_String();
-		//testPropertyCheck_Number();
-		//testPropertyCheck_Date();
-		//testPropertyCheck_Collection();
-		//testMap();
+		testPropertyCheck_String();
+		testPropertyCheck_Number();
+		testPropertyCheck_Date();
+		testPropertyCheck_Collection();
+		testMap();
 		testBoolean();
 		
 		testRegString();
@@ -281,19 +279,14 @@ public class TestCheck {
 		System.out.println(pattenCheck.check());
 	}
 	
-	/*public static void testPropertyCheck_String() {
-
+	public static void testPropertyCheck_String() throws ExecuteExpection {
 		PropertyCheck propertyCheck = new PropertyCheck();
-		
-		
 		propertyCheck.setCheckValue("3");
 		propertyCheck.setPattern("NOTNULL;NOTEMPTY;NOTEQUAL:'2';EQUAL:'3';LETTER:4;ELETTER:3;GREATER:2;EGREATER:3");
-		//propertyCheck.setPatten("NOTNULL;NOTEMPTY;NOTEQUAL:'2';EQUAL:'3';LETTER:4;ELETTER:3");
-		//propertyCheck.setPatten("NOTEQUAL:'2'");
 		System.out.println(propertyCheck.check());
 	}
 	
-	public static void testPropertyCheck_Number() {
+	public static void testPropertyCheck_Number() throws ExecuteExpection {
 
 		PropertyCheck propertyCheck = new PropertyCheck();
 		
@@ -305,7 +298,7 @@ public class TestCheck {
 		System.out.println(propertyCheck.check());
 	}
 	
-	public static void testPropertyCheck_Date() {
+	public static void testPropertyCheck_Date() throws ExecuteExpection {
 
 		PropertyCheck propertyCheck = new PropertyCheck();
 		
@@ -318,7 +311,7 @@ public class TestCheck {
 		System.out.println(propertyCheck.check());
 	}
 	
-	public static void testPropertyCheck_Collection() {
+	public static void testPropertyCheck_Collection() throws ExecuteExpection {
 
 		PropertyCheck propertyCheck = new PropertyCheck();
 		
@@ -329,5 +322,5 @@ public class TestCheck {
 		//propertyCheck.setPatten("NOTNULL;NOTEMPTY;NOTEQUAL:'2';EQUAL:'3';LETTER:4;ELETTER:3");
 		//propertyCheck.setPatten("NOTEQUAL:'2'");
 		System.out.println(propertyCheck.check());
-	}*/
+	}
 }
