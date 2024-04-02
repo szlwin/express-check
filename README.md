@@ -127,4 +127,83 @@ Licensed under the BSD lincese.
 		System.out.println("testPattenCheck_1:"+pattenCheck.check());
 	}
 
+以上例子中，同时对数字及字符串类型的数据进行校验，且包含数字运算及复杂判断逻辑，其具体符号如下：<br>
+<table>
+  <tr>
+    <td>符号</td>
+    <td>含义</td>
+    <td>备注</td>
+  </tr>
+  <tr>
+    <td>and</td>
+    <td>与</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>or</td>
+    <td>或</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>+</td>
+    <td>加运算符</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>-</td>
+    <td>减运算符号</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>*</td>
+    <td>乘运算符和</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>/</td>
+    <td>除运算符号</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>=</td>
+    <td>等于</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>!=</td>
+    <td>不等于</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>!</td>
+    <td>非</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>></td>
+    <td>大于</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>>=</td>
+    <td>大于等于</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><</td>
+    <td>小于</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><=</td>
+    <td>小于等于</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><=</td>
+    <td>小于等于</td>
+    <td></td>
+  </tr>
+</table>
+
 
