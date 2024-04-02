@@ -125,6 +125,7 @@ Licensed under the BSD lincese.
 		pattenCheck.setPattern("( productCount > 0 or totalPrice >= 0 ) or ( productCount*(totalPrice+10) > 200 and userId != '1' )");
 		pattenCheck.setCheckValue(map);
 		System.out.println("testPattenCheck_1:"+pattenCheck.check());
+  		System.out.println(simpleExprVisitor.getError().getCode());
 	}
 
 以上例子中，同时对数字及字符串类型的数据进行校验，且包含数字运算及复杂判断逻辑，其具体符号如下：<br>
@@ -222,3 +223,38 @@ Licensed under the BSD lincese.
 		System.out.println(pattenCheck.check());
 	}
 
+示例四<br>
+以下为一个语法例子，其可赋值、计算，并可进行简单逻辑处理<br>
+
+     public static void main(String args[]) {
+        SimpleExprParam simpleExprParam = new SimpleExprParam();
+        Map<String, Object> map = new HashMap<>();
+        map.put("totalPrice",350);
+        simpleExprParam.setParamMap(map);
+        simpleExprParam.setExternalMap(map);
+        SimpleExprVisitor simpleExprVisitor = new SimpleExprVisitor();
+        simpleExprVisitor.setParamer(simpleExprParam);
+        ExpressParser lexerExecuter = new ExpressParser();
+        lexerExecuter.addVisitor(simpleExprVisitor);
+        try {
+            lexerExecuter.parser("SimpleExpr",
+                    "#num : if !(totalPrice>10) then totalPrice*1.1  else totalPrice*1.2;\n" +
+                          "#num : if (#num>10 and totalPrice>10) then #num*1.1;\n" +
+                    "totalPrice : #num*totalPrice;\n"+
+                    "error('1000','totalPrice error') !: totalPrice >10 or #num>10;");
+        } catch (ExecuteInvaildException e) {
+            e.printStackTrace();
+        }
+        System.out.println(map.get("totalPrice"));
+	//显示错误信息
+        System.out.println(simpleExprVisitor.getError().getCode());
+    }
+以上例子中“:”符号左边为接受赋值的变量，右边为计算公式，其#开头表示为临时变量(如#num)，与参数进行区分，“;”表示一个语句结束。
+其最后一行“error”语句，表示如右边判断为false，则会生成一个error信息('!:'如换成':'则表示右边判断为true时会产生error)，其'1000'为错误编码，'totalPrice error'为错误信息。如存在校验错误，则可通过simpleExprVisitor.getError()获取。
+完整语法为：<br>
+
+	#num : if !(totalPrice>10) then totalPrice*1.1  else totalPrice*1.2;
+	#num : if (#num>10 and totalPrice>10) then #num*1.1;
+	totalPrice : #num*totalPrice;
+	error('1000','totalPrice error') !: totalPrice >10 or #num>10;
+ 如存在计算、校验、赋值等多种逻辑情况下，可用以上方式，根据实际情况定义语句。
