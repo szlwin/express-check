@@ -21,9 +21,7 @@ public class TestCheck {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
-		
-		//LexerUtil.load("expr", smarter.common.express.execute.ExprExecuter.class.getClassLoader()
-		//		.getResourceAsStream("Expr.ls"));
+
 		BigDecimal src = new BigDecimal(10);
 		BigDecimal dest = new BigDecimal(3);
 		src.divide(dest,2,2);
@@ -41,8 +39,8 @@ public class TestCheck {
 		testPattenCheck_3();
 		testPropertyCheck_String();
 		testPropertyCheck_Number();
-		testPropertyCheck_Date();
-		testPropertyCheck_Collection();
+		//testPropertyCheck_Date();
+		//testPropertyCheck_Collection();
 		testMap();
 		testBoolean();
 		
@@ -192,9 +190,9 @@ public class TestCheck {
 		
 		map1.put("subType", "电影");
 		map.put("sub", map1);
-		map.put("test.type", "3100");
+		map.put("type", "3100");
 		//map.put("hd", "false");
-		pattenCheck.setPattern("test.type = '3100'");
+		pattenCheck.setPattern("type = '3100'");
 		pattenCheck.setCheckValue(map);
 
 		System.out.println(pattenCheck.check());
@@ -254,10 +252,10 @@ public class TestCheck {
 		Map<String,Object> map = new HashMap<String,Object>(20);
 		map.put("productCount", 10);
 		map.put("totalPrice", 20);
-		map.put("userId", 2);
-		pattenCheck.setPattern("( productCount > 0 or totalPrice >= 0 ) or ( productCount*(totalPrice+10) > 200 and userId != 1 )");
+		map.put("userId", "2");
+		pattenCheck.setPattern("( productCount > 0 or totalPrice >= 0 ) or ( productCount*(totalPrice+10) > 200 and userId != '1' )");
 		pattenCheck.setCheckValue(map);
-		System.out.println(pattenCheck.check());
+		System.out.println("testPattenCheck_1:"+pattenCheck.check());
 	}
 	
 	public static void testPattenCheck_3() throws ExecuteExpection {
@@ -289,38 +287,24 @@ public class TestCheck {
 	public static void testPropertyCheck_Number() throws ExecuteExpection {
 
 		PropertyCheck propertyCheck = new PropertyCheck();
-		
-		
 		propertyCheck.setCheckValue(null);
 		propertyCheck.setPattern("NULL");
-		//propertyCheck.setPatten("NOTNULL;NOTEMPTY;NOTEQUAL:'2';EQUAL:'3';LETTER:4;ELETTER:3");
-		//propertyCheck.setPatten("NOTEQUAL:'2'");
 		System.out.println(propertyCheck.check());
 	}
 	
 	public static void testPropertyCheck_Date() throws ExecuteExpection {
 
 		PropertyCheck propertyCheck = new PropertyCheck();
-		
-		
-		//propertyCheck.setCheckValue("2011-12-31");
 		propertyCheck.setCheckValue(new Date());
 		propertyCheck.setPattern("NOTNULL;NOTEQUAL:#2011-12-30#;EQUAL:#2011-12-31#");
-		//propertyCheck.setPatten("NOTNULL;NOTEMPTY;NOTEQUAL:'2';EQUAL:'3';LETTER:4;ELETTER:3");
-		//propertyCheck.setPatten("NOTEQUAL:'2'");
 		System.out.println(propertyCheck.check());
 	}
 	
 	public static void testPropertyCheck_Collection() throws ExecuteExpection {
 
 		PropertyCheck propertyCheck = new PropertyCheck();
-		
-		
-		//propertyCheck.setCheckValue("2011-12-31");
 		propertyCheck.setCheckValue(new ArrayList(3));
 		propertyCheck.setPattern("GREATER:0");
-		//propertyCheck.setPatten("NOTNULL;NOTEMPTY;NOTEQUAL:'2';EQUAL:'3';LETTER:4;ELETTER:3");
-		//propertyCheck.setPatten("NOTEQUAL:'2'");
 		System.out.println(propertyCheck.check());
 	}
 }

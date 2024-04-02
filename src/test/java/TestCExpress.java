@@ -22,10 +22,6 @@ public class TestCExpress {
 
 	public static void testNumber() throws ExecuteInvaildException{
 		String expr = "numer : decimal*binteger*double*int*long+binteger-decimal-double-long-int-decimal;";
-		
-		//String expr = "numer : decimal+binteger;";
-		
-		
 		SimpleExprVisitor simpleExprVisitor = new SimpleExprVisitor();
 		SimpleExprParam simpleExprParam = new SimpleExprParam();
 		
