@@ -206,4 +206,19 @@ Licensed under the BSD lincese.
   </tr>
 </table>
 
+示例三<br>
+以下为一个将对象做为参数的例子<br>
+
+	public void testObj() throws ExecuteExpection {
+
+		TestCheck.Order order = new TestCheck.Order();
+
+		TestCheck.Order order1 = new TestCheck.Order();
+		order1.setId(1);
+		order.setOrder(order1);
+		PatternCheck pattenCheck = new PatternCheck();
+		pattenCheck.setCheckValue(order);
+		pattenCheck.setPattern("order.id=1");
+		System.out.println(pattenCheck.check());
+	}
 
