@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.GregorianCalendar;
 import java.util.Map;
 
 import javolution.util.FastMap;
@@ -130,11 +130,18 @@ public class CheckUtil
 	 //if(value == null){
 	 //	 return  checkValue == null;
 	 //}
-	 
-	 
       if (value == null || checkValue == null) {
         return new ObjectCompare().compare(value, tag, checkValue);
       }
+      
+      if(value instanceof Date && checkValue instanceof String){
+    	 
+    		 
+    	  return compareArray[2].compare(value, tag, convert((String) checkValue));
+    		  
+    	  
+      }
+
 	  Compare compare = dataMap.get(value.getClass());
       if (compare == null) {
     	  return compareArray[0].compare(value, tag, checkValue);
@@ -262,5 +269,35 @@ public class CheckUtil
 	}
 	return strValue;
 	  
+  }
+  
+  private static Date convert(String str)
+  {
+    GregorianCalendar gregorianCalendar = null;
+    String[] dateArray = str.split(" ");
+    if (dateArray.length > 1)
+    {
+      String[] dateYearInfo = dateArray[0].split("-");
+      
+      String[] dateHourInfo = dateArray[1].split(":");
+      
+      gregorianCalendar = new GregorianCalendar(
+        Integer.valueOf(dateYearInfo[0]).intValue(), 
+        Integer.valueOf(dateYearInfo[1]).intValue() -1 , 
+        Integer.valueOf(dateYearInfo[2]).intValue(), 
+        Integer.valueOf(dateHourInfo[0]).intValue(), 
+        Integer.valueOf(dateHourInfo[1]).intValue(), 
+        Integer.valueOf(dateHourInfo[2]).intValue());
+    }
+    else
+    {
+      String[] dateYearInfo = dateArray[0].split("-");
+      
+      gregorianCalendar = new GregorianCalendar(
+        Integer.valueOf(dateYearInfo[0]).intValue(), 
+        Integer.valueOf(dateYearInfo[1]).intValue() -1 , 
+        Integer.valueOf(dateYearInfo[2]).intValue());
+    }
+    return gregorianCalendar.getTime();
   }
 }

@@ -3,7 +3,7 @@ package smarter.common.exception;
 import santr.parser.exception.ExecuteInvaildException;
 
 public class ExecuteExpection
-  extends ExecuteInvaildException
+  extends RuntimeException
 {
   private static final long serialVersionUID = -8335727841998719852L;
   

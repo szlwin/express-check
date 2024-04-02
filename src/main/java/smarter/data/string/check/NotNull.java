@@ -1,16 +1,10 @@
-/* 1:  */ package smarter.data.string.check;
-/* 2:  */ 
-/* 3:  */ public class NotNull
-/* 4:  */   extends StringCheck
-/* 5:  */ {
-/* 6:  */   public boolean check(String str, String e)
-/* 7:  */   {
-/* 8:6 */     return str != null;
-/* 9:  */   }
-/* ::  */ }
+package smarter.data.string.check;
 
-
-/* Location:           D:\pub_work\doc-eq-code-Dgremlin-master\lib\express-check-1.0.jar
- * Qualified Name:     smarter.data.string.check.NotNull
- * JD-Core Version:    0.7.0.1
- */
+public class NotNull
+  extends StringCheck
+{
+  public boolean check(String str, String e)
+  {
+    return str != null;
+  }
+}

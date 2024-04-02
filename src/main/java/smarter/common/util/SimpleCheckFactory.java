@@ -1,6 +1,5 @@
 package smarter.common.util;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javolution.util.FastMap;

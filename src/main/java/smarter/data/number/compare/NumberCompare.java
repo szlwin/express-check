@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 /*  2:   */ 
 /*  4:   */ import smarter.common.compare.AbstractCompare;
-/*  5:   */ import smarter.data.number.check.NumberCheckFactory;
+import smarter.data.number.check.factory.NumberCheckFactory;
 /*  6:   */ 
 /*  7:   */ public class NumberCompare
 /*  8:   */   extends AbstractCompare<Number>
@@ -29,9 +29,9 @@ import java.math.BigInteger;
 					}
 					
 					if( src instanceof BigDecimal ){
-						return compare((BigDecimal)src, compareTag, (BigDecimal)dest);
+						return compareBigDecimal((BigDecimal)src, compareTag, (BigDecimal)dest);
 					}else{
-						return compare((BigInteger)src, compareTag, (BigInteger)dest);
+						return compareBigInteger((BigInteger)src, compareTag, (BigInteger)dest);
 					}
 					
 				}
@@ -62,8 +62,8 @@ import java.math.BigInteger;
 						newSrc = new BigDecimal(src.toString());
 						
 						
-					}else{
-						newSrc = new BigInteger(src.toString());
+					}else if(dest instanceof BigInteger){
+						newSrc = BigInteger.valueOf(src.longValue());
 						
 						
 					}
@@ -125,7 +125,7 @@ import java.math.BigInteger;
 					
 					throw new RuntimeException("UnSuport compare tag:"+compareTag);
 			}
-/* 16:   */ }
+}
 
 
 

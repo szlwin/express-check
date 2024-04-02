@@ -7,7 +7,7 @@ import santr.v4.parser.ExpressParser;
 public class Executer
 {
   
-  public boolean execute(String expr, Map<String, Object> param)
+  public boolean execute(String expr, Object param)
     throws ExecuteInvaildException
   {
     ExpressParser lexerExecuter = new ExpressParser();

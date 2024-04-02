@@ -50,6 +50,6 @@ public class CheckFactory
   
   public static Check<?> getSimpleCheck(String checkName)
   {
-    return (Check)checkMap.get(checkName);
+    return (Check<?>)checkMap.get(checkName);
   }
 }

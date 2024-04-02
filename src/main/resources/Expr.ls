@@ -18,9 +18,9 @@ expr : expr ('*'|'/') expr
      | expr (K_AND|K_OR) expr
      | fun
      | ID ('.' ID)*
+     | '(' expr ')'
      | '-' INT
      | INT
-     | '(' expr ')'
      | STRING
      | DATE
      | BOOLEAN

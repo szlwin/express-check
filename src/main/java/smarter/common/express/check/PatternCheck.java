@@ -9,12 +9,12 @@ import smarter.common.express.execute.Executer;
 //import smarter.common.util.CheckUtil;
 
 public class PatternCheck
-  extends AbstractCheck<Map<String, Object>>
+  extends AbstractCheck<Object>
 {
   //private List<String> list = new ArrayList(30);
 
   
-  public boolean check(String pattern, Map<String,Object> value)  throws ExecuteExpection {
+  public boolean check(String pattern, Object value)  throws ExecuteExpection {
     Boolean result = null;
     Executer executer = new Executer();
     try
@@ -44,7 +44,7 @@ public class PatternCheck
     Executer executer = new Executer();
     try
     {
-      result = Boolean.valueOf(executer.execute(pattern, (Map<String,Object>)this.value));
+      result = Boolean.valueOf(executer.execute(pattern, this.value));
     }
     catch (Exception e)
     {
